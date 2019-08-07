@@ -326,14 +326,14 @@ void process_conn_server(int s)
 			case  0x04:                   //CMD_SET_STOP
 				bram_vptr[1][25]   = WORK_READY ;
 				start_record = 0;
- 	       gpio_set(64,1);
+ 	      		 gpio_set(64,1);
 				bram_vptr[1][9]   = 1 ;           //0x82000040
- 	       bram_vptr[1][20]  = 0 ;
- 	       bram_vptr[1][21]  = 0 ;
+ 	       		bram_vptr[1][20]  = 0 ;
+ 	      		 bram_vptr[1][21]  = 0 ;
 
- 	       bram_vptr[1][22]  = 1 ;
- 	       bram_vptr[1][23]  = 1 ;
- 	       bram_vptr[1][24]  = 1 ;
+ 	      		 bram_vptr[1][22]  = 1 ;
+ 	       		bram_vptr[1][23]  = 1 ;
+ 	       		bram_vptr[1][24]  = 1 ;
 				enable_data_source(0);
 
 				buffer[0] = 0x7e;
@@ -391,23 +391,23 @@ void process_conn_server(int s)
 			case  0x06:                       //CMD_GET_RTC
 				time_bram =  ubram_read(1, &time_buffer[0], 0x2000);	//0x820010f0
 				buffer[0] = 0x7e;
-         	    buffer[1] = 0x7e;
+         	    		buffer[1] = 0x7e;
 
-         	    buffer[2] = 0x00;
-         	    buffer[3] = 0x26;
+         	   		 buffer[2] = 0x00;
+         	   		 buffer[3] = 0x26;
 
 				buffer[5] = ((time_buffer[4109] & 0xf0)>>4)*10 + (time_buffer[4109] & 0x0f);  //y
 				buffer[7] = ((time_buffer[4108] & 0xf0)>>4)*10 + (time_buffer[4108] & 0x0f);  //m
 				buffer[9] = ((time_buffer[4107] & 0xf0)>>4)*10 + (time_buffer[4107] & 0x0f);  //d
 				buffer[11] = ((time_buffer[4106] & 0xf0)>>4)*10 + (time_buffer[4106] & 0x0f);  //h
-    		    buffer[13] = ((time_buffer[4105] & 0xf0)>>4)*10 + (time_buffer[4105] & 0x0f);  //m
+    		   		 buffer[13] = ((time_buffer[4105] & 0xf0)>>4)*10 + (time_buffer[4105] & 0x0f);  //m
 				buffer[15] = ((time_buffer[4104] & 0xf0)>>4)*10 + (time_buffer[4104] & 0x0f);  //s
 
 				buffer[30] = 0xfd;
 				buffer[31] = 0xfd;
 
-     	    	write(s, buffer, ACK_SIZE);
-     	    	break;
+     	    			write(s, buffer, ACK_SIZE);
+     	    			break;
 			case  0x07:                   //choose--the data source
 				if(buffer[4])
 				{
@@ -491,7 +491,7 @@ void process_conn_server(int s)
 				break;
 			case  0x10:                   //file  information
 				memcpy(path, &buffer[18], MAX); //get the file name
-				total = get_file_count(path);
+				total = get_file_count(path);    //add: yanghx 2019.07.16  count the file
 				buffer[0]  = 0x7e;
 				buffer[1]  = 0x7e;
 
