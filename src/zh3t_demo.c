@@ -1,5 +1,8 @@
 
 /*
+      Created on: 8,7,2019
+     Author: yanghx
+
 zh3t_demo
 write:
 bram_vptr[1][0]  SH_time         ;  //0x82000000     bram_vptr[1][12]  TIME_sec    ;  //0x82000060
